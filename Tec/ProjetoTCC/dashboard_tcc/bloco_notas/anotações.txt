@@ -1,0 +1,2 @@
+Para tirar codigo que esta tudo em uma linha:  "Shift+Alt+F" e
+extensões relacionadas: Prettier, o Beautify e o ESLint.

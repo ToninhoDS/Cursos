@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Mapa - Vagaspark</title>
+    <!-- API css utilizadas para o desenvolvimento -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+    <style>
+        #map {
+            position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+        }
+        
+    </style>
+</head>
+<body>
+    
+  
+    <div id="map" style="position: absolute; top: 35%; right: 10%; bottom: 10%; left: 10%;"></div>
+    <input disabled id="search-input" placeholder="Pesquisar estacionamento" style="position: absolute; top: 10px; right: 10px; z-index: 1000; visibility: hidden;">
+   <h1 style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 190%;">Sua localização é:</h1>
+    <h3 style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"></h3>
+    <hr>
+    <h1 style="text-align: center; font-size: 190%;">Lista de estacionamentos</h1>
+    <ul id="estacionamentos-lista" style="text-align: center; list-style: none; font-weight: 600; font-size: large; display: flex; justify-content: space-around; cursor: pointer; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 90%; color: cadetblue; ">
+</ul> <hr>
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script>
+    var map;
+    var h3 = document.querySelector('h3');
+    var newMarker;
+    var FamiliaAlcantaraLati = -23.963891;
+    var FamiliaAlcantaraLong = -46.384387;
+    var MauaEstaLati = -23.964806;
+    var MauaEstaLong = -46.385101;
+    var EstaSergioLati = -23.963320;
+    var EstaSergioLong = -46.386558;
+    var routingControl;
+    var estacionamentos = [
+        {
+            nome: 'FamiliaAlcantara',
+            latitude: -23.963891,
+            longitude: -46.384387
+        },
+        {
+            nome: 'Estacionamento Sérgio',
+            latitude: -23.963320,
+            longitude: -46.386558
+        },
+        {
+            nome: 'Maua Estacionamento',
+            latitude: -23.964806,
+            longitude: -46.385101
+        }
+    ];
+
+function success(pos) {
+    console.log(pos.coords.latitude, pos.coords.longitude);
+    h3.textContent = `Latitude:${pos.coords.latitude}, Longitude:${pos.coords.longitude}`;
+
+    if (map === undefined) {
+        map = L.map('map').setView([pos.coords.latitude, pos.coords.longitude], 15);
+    } else {
+        map.setView([pos.coords.latitude, pos.coords.longitude], 15);
+    }
+
+    L.tileLayer('https://api.maptiler.com/maps/openstreetmap/{z}/{x}/{y}.jpg?key=GfQDBCSJOZyOaIOA9eO5', {
+    tileSize: 512,
+    zoomOffset: -1,
+    minZoom: 1,
+    attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>',
+    crossOrigin: true
+    }).addTo(map);
+
+    
+
+    var veiculo = L.icon({
+        iconUrl: 'img/veiculo.png',
+        iconSize: [40, 40]
+    });
+
+    var estacionamento = L.icon({
+        iconUrl: 'img/logoVagaspark.png',
+        iconSize: [40, 40]
+    });
+
+    var marker = L.marker([pos.coords.latitude, pos.coords.longitude], { icon: veiculo }).addTo(map)
+    .bindPopup('Usuário')
+  
+
+    var markFamiliaAlcantara = L.marker([FamiliaAlcantaraLati, FamiliaAlcantaraLong], { icon: estacionamento }).addTo(map)
+    .bindPopup('FamiliaAlcantara')
+    
+    var markEstaSergio = L.marker([EstaSergioLati, EstaSergioLong], { icon: estacionamento }).addTo(map)
+    .bindPopup('Estacionamento Sérgio')
+    
+    var markMauaEsta = L.marker([MauaEstaLati, MauaEstaLong], { icon: estacionamento }).addTo(map)
+    .bindPopup('Maua Estacionamento')
+        
+
+    var searchInput = document.getElementById('search-input');
+    var searchControl = L.Control.geocoder({
+        geocoder: new L.Control.Geocoder.Nominatim()
+    }).addTo(map);
+
+searchInput.addEventListener('keydown', function (event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        var searchTerm = searchInput.value;
+        searchControl.geocode(searchTerm, function (results) {
+            if (results.length > 0) {
+                var result = results[0];
+                var destination = result.center;
+                var destinationMarker = L.marker(destination).addTo(map);
+                var waypoints = [
+                    L.latLng(pos.coords.latitude, pos.coords.longitude),
+                    L.latLng(destination[0], destination[1])
+                ];
+
+                routingControl = L.Routing.control({
+                    waypoints: waypoints,
+                    show: false
+                }).addTo(map);
+
+                routingControl.on('routesfound', function (e) {
+                    var routes = e.routes;
+                    var coordinates = routes[0].coordinates;
+                    var currentIndex = 0;
+
+                    function moveMarker() {
+                        if (currentIndex >= coordinates.length) {
+                             alert('Chegou ao destino!');
+                              // newMarker.remove();
+                              // routingControl.remove();
+                            window.location.reload();
+                            return;
+                        }
+
+                        var coord = coordinates[currentIndex];
+                        marker.setLatLng([coord.lat, coord.lng]);
+                        currentIndex++;
+                        setTimeout(moveMarker, 500);
+                    }
+
+                    moveMarker();
+                });
+            }
+        });
+    }
+});
+
+            // Limpa a lista de estacionamentos antes de adicionar os novos
+            var estacionamentosLista = document.getElementById('estacionamentos-lista');
+            estacionamentosLista.innerHTML = '';
+
+            // Adiciona os estacionamentos à lista
+            estacionamentos.forEach(function (estacionamento) {
+                var li = document.createElement('li');
+                li.textContent = estacionamento.nome;
+
+                li.addEventListener('click', function () {
+                    var destination = ([estacionamento.latitude, estacionamento.longitude]);
+                    var destinationMarker = L.marker(destination).addTo(map);
+                    var waypoints = [
+                        L.latLng(pos.coords.latitude, pos.coords.longitude),
+                        L.latLng(destination[0], destination[1])
+                    ];
+
+                    routingControl = L.Routing.control({
+                        waypoints: waypoints,
+                        show: false
+                    }).addTo(map);
+
+                    routingControl.on('routesfound', function (e) {
+                        var routes = e.routes;
+                        var coordinates = routes[0].coordinates;
+                        var currentIndex = 0;
+
+                        function moveMarker() {
+                            if (currentIndex >= coordinates.length) {
+                                alert('Chegou ao destino!');
+                                // newMarker.remove();
+                                // routingControl.remove();
+                                window.location.reload();
+                                return;
+                            }
+
+                            var coord = coordinates[currentIndex];
+                            marker.setLatLng([coord.lat, coord.lng]);
+                            currentIndex++;
+                            setTimeout(moveMarker, 500);
+                        }
+
+                        moveMarker();
+                    });
+                });
+
+                estacionamentosLista.appendChild(li);
+            });
+        }
+
+        function error(err) {
+            console.warn(`ERROR(${err.code}): ${err.message}`);
+        }
+
+        navigator.geolocation.getCurrentPosition(success, error);
+    </script>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Vagaspark</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		.leaflet-marker-icon,
+		.leaflet-marker-shadow {
+			display: none !important;
+		}
+
+		.pointers,
+		.taxi-pointers,
+        .iconPessoa-pointers{
+			display: block !important;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="map" style="width:100%; height: 100vh"></div>
+	<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+	<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+
+	<script>
+
+        //R. João Ramalho, 814 - Centro, São Vicente - SP, 11310-050
+        // -23.964803, -46.385111
+
+       // const estacionamentoMauá = [-23.964803, -46.385111];
+		// Personalizar css no mapa
+
+		//personaliza o user
+		let myCustomColourUser = 'background-color: red;'
+        let myCustomColourUserPartida = 'background-color: blue;'
+
+		// personaliza o marker
+		const markerHtml = `
+			width: 2rem;
+			height: 2rem;
+			display: block;
+			left: -1.5rem;
+			top: -1.5rem;
+			position: relative;
+			border-radius: 3rem 3rem 0;
+			transform: rotate(45deg);
+			border: 3px solid #FFFFFF;`
+
+            const markerHtmlPartida = `
+			width: 3rem;
+			height: 3rem;
+			display: block;
+			left: -1.5rem;
+			top: -1.5rem;
+			position: relative;
+			border-radius: 3rem 3rem 0;
+			transform: rotate(45deg);
+			border: 3px solid #FFFFFF;`
+
+		// Coordenadas do Ponta A - Táxi
+		const coordTaxi = [-23.965473, -46.384074];
+		// Coordenadas do Ponta B - Usuário
+		const coordUser = [-23.964808, -46.385099];
+
+		// Iniciar o mapa com coordenadas do ponto A
+		const map = L.map('map').setView(coordTaxi, 1);
+
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
+
+        
+
+        var myGeoJSON = {"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"LineString","coordinates":[[-46.38729935,-23.96969043],[-46.38684757,-23.96887521],[-46.3858492,-23.96935697],[-46.38536123,-23.96860357],[-46.38419791,-23.96906353],[-46.38369447,-23.96827617],[-46.38412046,-23.9680727]]},"id":"09983bc1-d5f3-4a50-9e6b-4a33c1e473f2","properties":{"name":"Work to House"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-46.38729935,-23.96969043]},"id":"49a49f99-164c-49c7-9091-14ea0a095ae3","properties":{"name":""}},{"type":"Feature","geometry":{"type":"Point","coordinates":[-46.38412445,-23.96806992]},"id":"9ef49c16-3ae8-4bc2-afec-bb8f4d88896c","properties":{"name":""}}]}
+            L.geoJSON(myGeoJSON).addTo(map);
+
+            L.control.scale({
+                metric: true,
+                imperial: false,
+                position: 'topright'
+            }).addTo(map);
+
+            L.Control.Watermark=L.Control.extend({
+                onAdd:function(map){
+                    var img = L.DomUtil.create('img');
+                    img.src='logoVagaspark.png';
+                    img.style.width='150px';
+                    return img;
+                },
+                onRemove:function(map){},
+            });
+
+            L.control.watermark = function(opts){
+                return new L.Control.Watermark(opts);
+            }
+
+            L.control.watermark({position:'bottomleft'}).addTo(map);
+		// Personalizar Ponto na mapa com imagem do táxi.
+		const taxiIcon = L.icon({
+			className: "taxi-pointers",
+			iconUrl: 'taxi.png',
+			iconSize: [40, 40]
+		})
+
+        const pessoaIcon = L.icon({
+			className: "iconPessoa-pointers",
+			iconUrl: 'iconPessoa.jpg',
+			iconSize: [25, 25]
+		})
+
+        
+
+		const marker = L.marker(coordTaxi, { icon: taxiIcon }).addTo(map);
+		const newmarker1 = L.marker(coordTaxi, { icon: pessoaIcon }).addTo(map);
+
+        marker.bindPopup("<br> Salve! </br><br> Já to chegando...").openPopup();
+
+		function startService () {
+			// Array de coordenadas. Simula o táxi enviando a localização para o APP.
+			const latlng = [
+
+				{ lat: -23.965473, lng: -46.384074},
+				{ lat: -23.965447, lng: -46.384055},
+				{ lat: -23.965367, lng: -46.384003},
+				{ lat: -23.965313, lng: -46.383966},
+                { lat: -23.965091, lng: -46.383816},
+                { lat: -23.964688, lng: -46.383548},  
+                { lat: -23.964436, lng: -46.383447}, 
+                { lat: -23.964320, lng: -46.383627}, 
+                { lat: -23.964341, lng: -46.383893},  
+                { lat: -23.964600, lng: -46.384209}, 
+                { lat: -23.964836, lng: -46.384363},  
+                { lat: -23.964949, lng: -46.384435},
+                { lat: -23.964751, lng: -46.384829},   
+                { lat: -23.964757, lng: -46.385120}, 
+				{ lat: -23.964808, lng: -46.385099},
+			]
+
+		   // Personalizar Ponto na mapa com imagem do Usuário.
+			const icon = L.divIcon({
+				className: "pointers",
+				iconAnchor: [0, 24],
+				labelAnchor: [-6, 0],
+				popupAnchor: [0, -36],
+				html: `<span style="${markerHtml}${myCustomColourUser}" />`
+			})
+
+            const iconPartida = L.divIcon({
+				className: "pointers",
+				iconAnchor: [0, 24],
+				labelAnchor: [-6, 0],
+				popupAnchor: [0, -36],
+				html: `<span style="${markerHtmlPartida}${myCustomColourUserPartida}" />`
+			})
+
+			
+			// Adição de um estacionamento
+			////////
+
+		//atribui o usuario/estacionamento ao mapa
+			var newMarker = L.marker([coordUser[0], coordUser[1]], { icon }).addTo(map);
+
+			// Identifica a melhor rota para iniciar a viagem.
+			L.Routing.control({
+				waypoints: [
+					L.latLng(coordTaxi[0], coordTaxi[1]),
+					L.latLng(coordUser[0], coordUser[1])
+				]
+			}).on('routesfound', function (e) {
+				// Loop de coordenadas. Simula o táxi enviando a localização para o APP.
+				latlng.forEach(function (coord, index) {
+					setTimeout(function () {
+						marker.setLatLng([coord.lat, coord.lng]);
+						// Identifica o final da viagem.
+						if (coord.lat === coordUser[0] && coord.lng === coordUser[1]) {
+							alert('Você chegou ao estacionamento!');
+                            marker.bindPopup("<br> Cheguei!!! </br><br> Já estou no local de embarque.");
+						}
+					}, 400 * index)
+				})
+
+			}).addTo(map);
+		};
+
+		startService()
+       
+	</script>
+
+
+</body>
+
+</html>

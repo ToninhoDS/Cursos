@@ -1,0 +1,412 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,700;1,700&display=swap');
+/* resetando a margem */
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+/* aplicando a fonte */
+body{
+    font-family: 'Roboto',sans-serif;
+}
+/* tirar os @  os riscos na frase*/
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+/* colocando as class */
+.btn{
+    display: inline-block;
+    padding: 10px 60px;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    background: rgb(201, 184, 36);
+    color: #eee;
+    border-radius: 5px;
+    transition: background 500ms ease;
+    opacity: 75%;
+}
+/* passa o mouse encima */
+.btn:hover{ 
+    cursor: pointer;
+    background: rgb(38, 89, 199);
+    opacity: 100%;
+}
+/* mexer no HeadLine */
+
+.headLine{
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 50px;
+    letter-spacing: 2px;
+}
+/* navBar */
+#navbar{
+    width: 100%;
+    background: #111;
+    color: #eee;
+    height: 80px;
+    position: fixed;
+    z-index: 6;
+
+}#navbar-container{ /* ele o filho do navbar entao ele é menor*/
+    width: 80%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+/* tratamento da imagem do logo pokemon antes do nome */
+
+#navbar-container img{
+        width: 200px;
+       
+       
+       
+}.image-logo{
+    position: relative;
+    right:1px;
+    top: 0;
+   
+}
+.logo{
+    font-size: 50px;
+    
+    
+}
+#navbar-items{
+    
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 25px;
+    display: flex;
+    list-style: none;
+    text-transform: uppercase;
+/* mudando a cor do topo */
+}#vavbar-items-1:hover{
+    
+    color: rgb(219, 196, 65);
+    /* dar borda as letras */
+    -webkit-text-stroke-width: 0.7px;
+    -webkit-text-stroke-color: rgb(38, 89, 199);
+    
+}#vavbar-items-2:hover{
+    color: rgb(219, 196, 65);
+    -webkit-text-stroke-width: 0.7px;
+    -webkit-text-stroke-color: rgb(38, 89, 199);
+}#vavbar-items-3:hover{
+    color: rgb(219, 196, 65);
+    -webkit-text-stroke-width: 0.7px;
+    -webkit-text-stroke-color: rgb(38, 89, 199);
+}#vavbar-items-4:hover{
+    color: rgb(219, 196, 65);
+    -webkit-text-stroke-width: 0.7px;
+    -webkit-text-stroke-color: rgb(38, 89, 199);
+}
+
+#navbar-items li{
+    padding: 10px; /* posição do inicio, galeria */
+}
+/* Show case imagem */
+
+#showcase{
+    
+    height: 99vh; /*100vh vai opar 100% da visao da pessoa*/
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color:#eee;
+    background: url(/img/foto-pokedex.jpg)no-repeat center center/cover;/*iamgem nao se repedir, e tentar se manter no container*/
+    /*deixar pagina pouco mais preta*/
+    background-color: rgba(0,0,0,0.5);
+    background-blend-mode: color;
+    z-index: 1;
+    position: relative; 
+
+}
+
+#showcase-container{ /* aonde esta  texo central */
+    text-align: center;
+}
+
+/* tratamento do video */
+#showcase-video{
+    width: 100%;
+    height: 100%;
+    overflow:hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.showcase-video video{
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+width: 100%;
+
+
+}
+/* tratamento img */
+#showcase-container img{
+    width: 400px;
+    height: 200px;
+    /*opacidade*/
+}
+/* tratamento do zoom da foto */
+.showcase{
+    overflow: hidden;
+}
+#showcase-container img{
+    max-width: 100%;
+    -moz-transition: all 0.3s;
+    -weblit-transition: all 0.3s;
+    transition: all 0.3s;
+  
+
+
+  }
+#showcase-container:hover img{
+    -moz-transform:  scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    /* alterar a imagem  */
+}#imagem-some:hover{
+    background-image: url(/img/fotopokedex.jpg);
+}
+    
+
+  
+/* icone da pokebola aparecer e sumnir e aparecer picachu */
+
+
+
+/*  /*iamgem nao se repedir, e tentar se manter no */*/
+#showcase-container h2{
+    font-size: 2.5rem;
+}
+
+#showcase-container p{ /* paragrafo */
+    font-size: 1.2rem;
+    padding: 7px 0 ;
+}
+
+/*segunda parte do corpo*/
+
+#clients{
+    width: 100%;
+    background: #eee;
+    color: #111;
+    padding: 50px;
+}
+
+#insignia-container{
+    display: grid; /* esse comando diz para html nos icones terem 4 colunas(grid-template-columns)*/
+    grid-template-columns: repeat(8,1fr); /*4,1fr que ele tenha 4 frações da meu total da minha tela*/
+    justify-items: center;
+    padding: 15px;
+}
+
+.client{
+    display: inline-block;
+    width: 25%; /* vai diminuir o tamanho do icones*/
+}
+
+/* terceira parte do corpo  */
+
+#features{
+    width: 100%;
+    background: #222;
+    color: #eee;
+    padding: 50px;
+   
+}
+
+#features-container{
+    width: 100%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-column-gap: 50px ; /* vai agrupar as colunas com distancia de 50 px*/
+   
+}
+.feature{
+    display: flex; /* ficar um em baixo do outro os textos*/ 
+    flex-direction: column;
+    background: #333;
+    padding: 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    
+    
+}
+.feature img{
+    
+    
+    width: 350px;
+    height: 150px;
+}
+.feature-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+/* quarta parte do corpo */
+
+#product{
+    width: 100%;
+    padding: 50px;
+}
+#product-container{
+    display: flex; /* os textos e icone fica do lado da imagem maior ou pai*/
+    justify-content: center;
+    align-items: center; /*pega o texto e imagem que estava do lado encima e coloca no meio(do lado da imagem maior, so que no meio)*/
+
+}
+#product-container img{
+    width: 600px;
+    height: 300px;
+    opacity: 95%;
+    border-radius: 10px;
+
+}
+#items{
+    width: 650px;
+}
+#items .item{
+    display: flex;
+    padding: 10px;
+    margin: 15px 0;
+    font-size: 1.2rem;
+}
+#items .item img{
+    
+    width: 100px;
+    height: 60px;
+    margin: 0px 7px;
+    background: rgba(17, 17, 17, 0.226);
+    padding: 5px;
+
+}
+
+/*quinto corpo*/
+
+.testimonial{
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    background: #333;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 5px;
+}
+#testimonials{
+    width: 100%;
+    background: #222;
+    color: #eee;
+    padding: 50px;
+    
+}
+
+#testimonials-container{
+    width: 80%;
+    margin: auto; /* equilibrar a imagem entre todo so lados*/
+    display: flex; /*colocar uma imgem do lado da outra*/
+    align-items: center;
+    flex-direction: column ;
+}
+
+.testimonial .testimonial-image{
+    height: 200px; /* diminuir a imagem */
+    width: auto;
+    border-radius: 50%; /* deixar a imagem redonda */
+    margin: 5px;
+}
+
+/* sexto corpo Galeria */
+
+#gallery{
+    width: 90%;
+    margin: auto;
+    padding: 50px;
+
+
+}
+#gallery-container{
+    overflow: hidden;
+    
+    display: grid; /* displey vai agrupar uma determina quantidade de itens nas colunas determinadas */
+    grid-template-columns: repeat(5, 1fr); /*3 colunas de fotos*/
+    grid-gap: 15px;
+    justify-items: center;
+}
+.gallery-image{
+    /* transitação do zoom */
+    max-width: 100%;
+    -moz-transition: all 0.3s;
+    -weblit-transition: all 0.3s;
+    transition: all 0.3s;
+   
+    /* fim */
+  
+    display: inline-block;
+    width: 250px;
+    height: 200px;
+    border-radius: 5px;
+    background: none;
+
+}.gallery-image:hover{
+    /* transitação do zoom */
+    -moz-transform:  scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    /* fim */
+   
+    border-radius: 20px;
+    cursor: pointer;
+    cursor: zoom-in;
+    
+}
+
+.nome-gallery p{
+    text-align: center;
+    font-size: 20px;
+    background: rgb(51,51,51);
+    border-radius: 4px;
+    color: white;
+    font-family: fantasy;
+    padding: 1px; /*espaçamento entre as letras e a margem estipulada la encima */
+    letter-spacing: 1px; /* espaçamento entre as letras*/
+}
+.insignia-gallery{
+    text-align: center;
+    display: inline-block;
+    width: 250px;
+    height: 200px;
+    border-radius: 5px;
+    background: none;
+    margin: auto;
+}
+.insignia-gallery p{
+    text-align: center;
+    font-size: 20px;
+    background: rgb(51,51,51);
+    border-radius: 4px;
+    color: white;
+    font-family: fantasy;
+    padding: 1px; /*espaçamento entre as letras e a margem estipulada la encima */
+    letter-spacing: 1px;
+
+}
+
+
+#footer{
+    background: #222;
+    color: #eee;
+    padding: 30px;
+    text-align: center;
+}
+

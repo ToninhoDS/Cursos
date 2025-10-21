@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,700;1,700&family=Rubik+Wet+Paint&display=swap');
+
+
+/* separar as colunas */
+.container-grid1 { 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) ;
+    
+    padding: 0px;
+   
+
+  }
+  .cadastroJ{
+    background: rgba(87, 145, 107, 0.813);
+   
+  }
+
+.cadastroF{
+    background: rgba(87, 96, 145, 0.813);
+  }
+.cadastro-marca {
+    background: rgba(88, 102, 195, 0.813);
+  }
+  
+.cadastroE {
+    background: rgba(133, 195, 88, 0.813);
+  }
+
+  /* tabela baixada */
+  #success_message{ display: none;}
+/* form */
+/* cor backgraoudn */
+.well { 
+    min-height: 20px;
+    padding: 19px;
+    
+    margin-bottom: 20px;
+    background-color: #ffffff !important; 
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+   
+}
+.form-horizontal{
+}
+
+.btn-warning {
+    color: #2e2f39;
+    background-color: #ffc108 !important;
+    border-color: #ffc108 !important;
+}
+.btn-warning:hover {
+   
+    background-color: #e9b004 !important;
+    border-color: #e9b004 !important;
+}

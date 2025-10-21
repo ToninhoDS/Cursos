@@ -1,0 +1,21 @@
+body{
+    background-color: black;
+}
+
+.centrologo{
+    text-align: center;
+}
+
+h1{
+    color: #E6E8FA;
+}
+
+.phap{
+    text-align: center;
+    margin-top: -70px;
+}
+
+.divpai{
+    text-align: center;
+    margin-top: 0px;
+}

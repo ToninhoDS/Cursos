@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="styles.css">
+<script src="vue2.js"></script>
+
+<div id="desafio">
+    <!-- 1) Preencha a tag <p> abaixo com o seu Nome e Idade - usando Interpolação -->
+    <p>Usando VueJS - {{ nome }} {{ idade }}</p>
+    
+    <!-- 2) Exiba sua idade multiplicada por 3 -->
+    <p>{{ idade * 3 }}</p>
+    
+    <!-- 3) Chame uma função para exibir um número randomico
+        entre 0 and 1 (Math.random()) -->
+    <p v-once>{{ Math.random(0, 1) }}</p>
+    
+    <!-- 4) Procure uma imagem no google e exiba na tag img 
+        fazendo o binding no atributo "src" -->
+    <div>
+        <img :src="urlImagem" height="400">
+    </div>
+    
+    <!-- 5) Inicialize o input com o seu nome (use o atributo "value") -->
+    <div>
+        <input type="text" :value="nome">
+    </div>
+
+    <!-- 6) Exiba um alert quando o botão for clicado -->
+    <div>
+        <button @click="exibirAlerta">Exibir Alerta</button>
+    </div>
+    
+    <!-- 7) Escute o evento "keydown" e armazene o valor na propriedade
+        data (dica: event.target.value) -->
+    <div>
+        <input @keydown="armazenaValor" type="text">
+        <p>{{ valor }}</p>
+    </div>
+    
+    <!-- 8) Ajuste o exercício 7 para disparar o evento "keydown" somente
+        quando a tecla for ENTER -->
+    <div>
+        <input @keydown.enter="armazenaValor" type="text">
+        <p>{{ valor }}</p>
+    </div>
+
+    <!-- 9) Exibir em "resultado" o texto 'Valor Diferente' enquanto
+        "valor" for diferente de 37 - "valor" é alterado pelos botões.
+        Mostrar 'Valor Igual' quando "valor" for igual a 37 -->
+        
+    <!-- 10) Monitorar as mudança de "resultado" e reiniciar "valor"
+        para 0 depois de 5 segundos (dica: setTimeout(..., 5000) -->            
+    <div>
+        <p>Valor atual: {{ valor2 }}</p>
+        <button @click="valor2 += 5">Somar 5</button>
+        <button @click="valor2 += 1">Somar 1</button>
+        <p>{{ resultado }}</p>
+    </div>
+	
+	<!-- 11) Crie duas classes CSS e associe a div usando a
+		sintaxe de array -->
+	<div :class="['classe1', 'classe2']" >Estou sem classe CSS :(</div>
+
+	<!-- 12) Aplique na div abaixo a classe informada pelo usuário
+		(crie classe CSS de exemplo). -->
+	<div>
+		<input type="text" v-model="classeEscolhida">
+		<div :class="classeEscolhida">Alguma coisa aqui</div>
+	</div>
+
+</div>
+<script src="app.js"></script>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mapa - Vagaspark</title>
+    <!-- API css utilizadas para o desenvolvimento -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        img {
+            width: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Sua localização é:</h1>
+    <h2 style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"></h2>
+    <div id="map" style="width:100%; height: 490px; border-radius: 20px;"></div>
+    
+    <script>
+    let h2 = document.querySelector('h2');
+    var map;
+    var newMarker;
+    var FamiliaAlcantaraLati = 23.963891; 
+    var FamiliaAlcantaraLong = -46.384387;
+    var MauaEstaLati = -23.964806;
+    var MauaEstaLong = -46.385101;
+    var EstaSergioLati = -23.963320;
+    var EstaSergioLong = -46.386558;
+    var routingControl;
+    function success(pos) {
+
+    // Validade se continua no mesmo lugar ou nao
+    if (map === undefined) {
+        map = L.map('map').setView([pos.coords.latitude, pos.coords.longitude], 13);
+    } else {
+        map.remove();
+        map = L.map('map').setView([pos.coords.latitude, pos.coords.longitude], 13);
+    }
+
+    // Mostra o mapa
+    L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    
+
+    // Cria o veiculo
+    var veiculo = L.icon({
+        iconUrl: 'img/veiculo.png',
+        iconSize: [50, 50]
+    });
+
+    var estacionamento = L.icon({
+        iconUrl: 'img/logoVagaspark.png',
+        iconSize: [50, 50]
+    });
+    // Cria o marcador e atrubui a ele o icone do veiculo nas coordenadas passadas
+    var marker = L.marker([pos.coords.latitude, pos.coords.longitude], { icon: veiculo }).addTo(map)
+    .bindPopup('Usuário')
+    .openPopup();
+    var markFamiliaAlcantara = L.marker([FamiliaAlcantaraLati, FamiliaAlcantaraLong], { icon: estacionamento }).addTo(map)
+    .bindPopup('FamiliaAlcantara')
+    
+    var markEstaSergio = L.marker([EstaSergioLati, EstaSergioLong], { icon: estacionamento }).addTo(map)
+    .bindPopup('Estacionamento Sérgio')
+    
+    var markMauaEsta = L.marker([MauaEstaLati, MauaEstaLong], { icon: estacionamento }).addTo(map)
+    .bindPopup('Maua Estacionamento')
+    
+// Cria a interação se houver algum click no mapa
+map.on('click', function (e) {
+    console.log(e);
+    if (newMarker) {
+        alert('Espere terminar a viagem para selecionar outra.');
+    } else {
+        newMarker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map);
+        console.log(newMarker);
+
+
+// inseri a interação de routas automaticas
+L.Routing.control({
+    waypoints: [
+        // Passa a coordenada partida
+        L.latLng(pos.coords.latitude, pos.coords.longitude),
+        // Passa a cordenada destino
+        L.latLng(e.latlng.lat, e.latlng.lng)
+    ]
+// Capturando as rotas encontradas no evento 'routesfound' e armazenando-as na variável routes para posterior manipulação.
+}).on('routesfound', function (e) {
+    var routes = e.routes;
+    console.log(routes);
+
+    var coordinates = e.routes[0].coordinates;
+            var currentIndex = 0;
+
+            // Valida se chegou ao destino e faz o mardador andar
+            function moveMarker() {
+                if (currentIndex >= coordinates.length) {
+                    // Chegou ao destino
+                    alert('Chegou ao destino!');
+                    map.removeLayer(marker);
+                    map.removeLayer(newMarker);
+                    map.removeControl(routingControl);
+                    return;
+                }
+                    
+                var coord = coordinates[currentIndex];
+                marker.setLatLng([coord.lat, coord.lng]);
+                currentIndex++;
+                setTimeout(moveMarker, 300);
+            }
+            moveMarker();
+            
+        }).addTo(map);
+}
+});
+
+
+    }
+    // Mostrar os erros encontrada
+    function error(err) {
+        console.log(err);
+    }
+
+    // Pega o tempo atual do usuário, tudo em tempo real
+    var watchID = navigator.geolocation.watchPosition(success, error, {
+        enableHighAccuracy: true,
+        timeout: 5000
+    });
+
+    
+    </script>
+    <!-- API js utilizadas para o desenvolvimento -->
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
+  
+</body>
+</html>

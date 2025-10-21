@@ -1,0 +1,64 @@
+body{
+    background-color: black;
+}
+
+.centrologo{
+    text-align: center;
+    margin-top: -60px;
+    margin-bottom: -25px;
+}
+
+.centrolink{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+h1{
+
+    color: cornsilk;
+    margin-left: 80px;
+    margin-top: -50px;
+    text-align: center;
+}
+
+p{
+    color: cornsilk;
+    font-style: italic
+}
+
+
+
+.backgrounddiv{
+    background-color: dimgray;
+}
+
+p {
+    margin: 0;
+    text-indent: 3ch;
+  }
+
+  .centroa{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.backgrounddivv{
+    background-color: green;
+}
+
+.querosaber {
+    background: #5C4033;
+    color: #E47833;
+    border-style: outset;
+    border-color: #E6E8FA;
+    height: 50px;
+    width: 130px;
+    font: bold 19px arial,sans-serif;
+    text-shadow: none;
+    }
+
+.h1zuero{
+    font-style: italic;
+	font-weight: bold;
+	font-family: arial, sans-serif;
+}

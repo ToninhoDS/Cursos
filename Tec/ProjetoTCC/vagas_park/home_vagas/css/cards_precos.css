@@ -1,0 +1,283 @@
+/* * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 15px;
+}
+body {
+  background: #f7f7ff;
+  font-family: "Montserrat", sans-serif;
+  width: 80%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+} */
+.header_card {
+  color: hsl(233, 13%, 49%);
+  margin: 3.3rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.toggle_card {
+  margin-top: 2rem;
+  color: hsl(234, 14%, 74%);
+  display: flex;
+  align-items: center;
+}
+.toggle_card-btn {
+  margin: 0 1rem;
+}
+.checkbox_card {
+  display: none;
+}
+
+.sub_card {
+  background: linear-gradient(
+    135deg,
+    rgb(134, 202, 120) 0%,
+    rgba(44, 90, 71) 100%
+  );
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* height: 25px;
+  width: 50px; */
+  height: 1.6rem;
+  width: 3.3rem;
+  border-radius: 1.6rem;
+  padding: 0.3rem;
+}
+.circle_card {
+  background-color: #fff;
+  height: 1.4rem;
+  width: 1.4rem;
+  border-radius: 50%;
+}
+.checkbox_card:checked + .sub_card {
+  justify-content: flex-end;
+}
+
+.cards_pai {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card_filho {
+  background: #fff;
+  color: hsl(233, 13%, 49%);
+  border-radius: 0.8rem;
+}
+
+.cards_pai .card_filho.active {
+  background: linear-gradient(
+    135deg,
+    rgb(80, 167, 148) 100%,
+    rgb(44, 90, 71) 0%
+  );
+  color: #fff;
+  display: flex;
+  align-items: center;
+  transform: scale(1.1);
+  z-index: 1;
+}
+/* plano basico */
+.card_ul_bas {
+  margin: 2.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.card_ul_bas  li {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 1.3rem 0;
+}
+.card_ul_bas li.price_card {
+  font-size: 3rem;
+  color: hsl(232, 13%, 33%);
+  padding-bottom: 2rem;
+}
+/* ^plano mestre */
+.card_ul {
+  margin: 2.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.card_ul  li {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.card_ul li.price_card {
+  font-size: 3rem;
+  color: hsl(232, 13%, 33%);
+  padding-bottom: 2rem;
+}
+
+/* plano pro */
+.card_ul_pro {
+  margin: 2.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.card_ul_pro  li {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 1.2rem 0;
+}
+.card_ul_pro li.price_card {
+  font-size: 3.3rem;
+  color: hsl(232, 13%, 33%);
+  padding-bottom: 2rem;
+}
+.card_ul li.price_card {
+  font-size: 3rem;
+  color: hsl(232, 13%, 33%);
+  padding-bottom: 2rem;
+}
+.shadow {
+  box-shadow: -5px 5px 15px 1px rgba(0, 0, 0, 0.1);
+}
+
+.card_filho.active .price_card {
+  color: #fff;
+}
+
+.btn_card {
+  margin-top: 1rem;
+  height: 2.6rem;
+  width: 13.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  box-shadow: 2px 2px 3px #888888;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 167, 148) 0%,
+    rgba(44, 90, 71) 100%
+  );
+  color: #fff;
+  outline: none;
+  border: 0;
+  font-weight: bold;
+
+}
+.btn_card:hover{
+  box-shadow: 3px 3px 4px #2d2c2c;
+  transition: 0.7s;
+}
+.active-btn {
+  background: #fff;
+  color: rgb(44, 90, 71);
+  font-family: "Montserrat", sans-serif;
+}
+.bottom-bar {
+  border-bottom: 2px solid hsla(240, 8%, 85%, 0.582);
+}
+.card_filho.active .bottom-bar {
+  border-bottom: 2px solid hsla(240, 8%, 85%, 0.253);
+}
+.pack {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 280px) {
+  .card_ul {
+    margin: 1rem;
+  }
+  .card_h1 {
+    font-size: 1.2rem;
+  }
+  .toggle_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 80px;
+  }
+  .cards_pai {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card_filho {
+    transform: scale(0.8);
+    margin-bottom: 1rem;
+  }
+  .cards_pai .card_filho.active {
+    transform: scale(0.8);
+  }
+}
+
+@media (min-width: 280px) and (max-width: 320px) {
+  ul {
+    margin: 20px;
+  }
+  .cards_pai {
+    display: flex;
+    flex-direction: column;
+  }
+  .cards_pai {
+    margin-bottom: 1rem;
+  }
+  .cards_pai .card_filho.active {
+    transform: scale(1);
+  }
+}
+
+@media (min-width: 320px) and (max-width: 414px) {
+  .cards_pai {
+    display: flex;
+    flex-direction: column;
+  }
+  .card_filho {
+    margin-bottom: 1rem;
+  }
+  .cards_pai .card_filho.active {
+    transform: scale(1);
+  }
+}
+@media (min-width: 414px) and (max-width: 768px) {
+  .card_filho {
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+  }
+  .cards_pai .card_filho.active {
+    transform: scale(1);
+  }
+}
+@media (min-width: 768px) and (max-width: 1046px) {
+  .cards_pai {
+    display: flex;
+  }
+  .card_filho {
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+  }
+  .cards_pai .card_filho.active {
+    transform: scale(1);
+  }
+}

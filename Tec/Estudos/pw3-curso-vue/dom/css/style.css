@@ -1,0 +1,14 @@
+.caixas {
+    display: flex;
+    justify-content: space-around;
+}
+
+.box {
+    width: 150px;
+    height: 150px;
+    background-color: gray;
+}
+
+.c1 { background-color: red; }
+.cor-2 { background-color: yellow; }
+.c3 { background-color: green; }

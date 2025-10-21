@@ -1,0 +1,11 @@
+comandos iniciar VUE
+
+se ja possui o arquivo e esta dentro dele?
+
+1- npm install
+
+2- npm i
+
+3- npm run serve
+
+

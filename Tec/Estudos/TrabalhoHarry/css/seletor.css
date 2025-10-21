@@ -1,0 +1,83 @@
+body{
+    background-image: url(../img/hatt.png);
+    background-repeat: round;
+    background-size: cover;
+    background-size: 100%;
+    background-attachment: fixed;
+}
+
+
+.hatcentro{
+    text-align: center;
+}
+
+img{
+    width: 260px;
+}
+
+.centroform{
+    text-align: center;
+    
+}
+
+.botao{
+    background: #5C4033;
+    color: #E47833;
+    border-style: outset;
+    border-color: #E6E8FA;
+    height: 30px;
+    width: 60px;
+    font: bold 12px arial,sans-serif;
+    text-shadow: none;
+}
+   
+p {
+		font-style: italic;
+		font-weight: bold;
+		font-size: 23px;
+		font-family: arial, sans-serif;
+        color: #E47833;
+}
+
+
+.forma{
+    text-align: center;
+}
+
+.seta{
+    width: 35px;
+    height: 35px;
+}
+
+.setaposicao{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.campo{
+    text-align: center;
+    margin-top: 23px;
+}
+.centropai{
+    text-align: center;
+    margin-top: 80px;
+}
+
+.botaoposicao{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.centrotio{
+    text-align: center;
+    
+}
+
+h3{
+    text-align: center;
+    font-style: italic;
+		font-weight: bold;
+		font-size: 25px;
+		font-family: arial, sans-serif;
+        color: #E47833;
+}

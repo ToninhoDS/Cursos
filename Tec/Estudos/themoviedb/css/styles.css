@@ -1,0 +1,319 @@
+/* Flex styles -------------------------------------------------*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  
+}
+
+header {
+    display: flex;
+    align-items: center;
+  }
+  
+  @media (min-width: 700px) {
+   .leading {
+      display: flex;
+      align-items: center;
+    }
+  }
+  
+ 
+  
+  body {
+    font-family: 'Quicksand', sans-serif;
+  }
+  
+  header {
+    padding: 10px;
+    font-size: 2em;
+    color: white;
+    background-color: rgb(5, 29, 5);
+  }
+  
+  .logo {
+    height: 50px;
+    margin-right: 20px;
+    height: auto;
+    
+  }
+  
+  .leading {
+    height: 240px;
+    margin-bottom: 30px;
+    padding: 200px;
+    color: white;
+    background-image: url('../img/demolidor3.png');
+    background-size: cover;
+    background-attachment: fixed;
+    color: white;
+    text-shadow: 0px 0px 5px rgb(13, 69, 20);
+    margin: auto;
+  }
+  
+  .leading-bigtext {
+    margin-right: 60px;
+    font-weight: bold;
+    font-size: 24vw;
+    opacity: 60%;
+  }
+  
+  @media (min-width: 700px) {
+    .leading-bigtext {
+      font-size: 140px;
+    }
+  }
+  
+  .leading-text {
+    max-width: 900px;
+    font-size: 1.2em;
+    line-height: 1.4em;
+    opacity: 80%;
+  }
+  
+  .cards {
+    max-width: 100em;
+    margin: 0 auto 300px;
+ 
+  }
+  
+  article {
+    position: relative;
+  }
+  
+  .article-img {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  .article-title {
+    position: absolute;
+    bottom: 2px;
+    width: 100%;
+    padding: 3px;
+    background-color: rgba(255, 255, 255, 0.439);
+    border-radius: 10px;
+  }
+/* Botão de pesquisa ------------------------------ */
+
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  /* BARRA DE BUSCA */
+  
+  .search-bar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  .search-bar button {
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.18);
+    
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+    border: 0;
+    
+    width: 95px;
+    height: 66px;
+  
+    background: linear-gradient(61.22deg, #E65F0D 18.35%, #F8AC00 70.22%);
+    border-radius: 0px 10px 10px 0px;
+  }
+  
+  #myInput {
+    width: 728px;
+    height: 66px;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    
+    background: #FFFFFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.18);
+    border-radius: 10px 0 0 10px;
+  }
+  
+  
+  
+  /* INFOS CONTATO */ 
+  
+  #myUL {
+    list-style-type: none;
+    padding: 40px;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    
+    width: 1281px;
+    height: auto;
+    background: #F2F2F2;
+    border-radius: 10px;
+    margin: auto;
+    
+    align-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  #myUL li {
+    margin: 10px;
+  }
+  
+  h1.contact-title {
+    font-family: Lato, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 100%;
+    
+    margin-bottom: 15px;
+  }
+  
+  .container-contact-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(157, 157, 157, 0.3);
+    box-sizing: border-box;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 380px;
+    height: 163px;
+    padding: 20px;
+    color: #505050;
+  }
+  
+  .info {
+    margin-top: 10px;
+  }
+  
+  .info svg {
+    margin-right: 10px;
+  }
+  
+  .hours-text p {
+    font-family: Lato, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 130%;
+    color: #505050;
+  }
+  
+  .instruct{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+    
+    font-family: Lato, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 130%;
+    
+    color: #9E9E9E;
+  }
+  
+  
+  /* Barra de busca */
+  
+  .email-ct {
+    margin-left: 30px;
+    margin-top: 3px;
+  }
+  
+  
+  @media (max-width: 1024px) {
+    
+    .container-contact-card {
+    width: 300px;
+    height: 200px;
+    padding: 20px;
+    }
+    
+    h1.contact-title {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 18px;
+    
+    margin-bottom: 10px;
+  }
+    
+    .hours-text p {
+    font-size: 13px;
+    line-height: 18px;
+  }
+    
+    #myUL {
+      padding: 0px;
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: auto;
+      margin: 0px;
+  }
+    
+    #myInput {
+      width: 250px;
+      height: 55px;
+      font-size: 14px;
+  }
+    
+    .search-bar button {
+      color: white;
+      font-size: 17px;
+      width: 55px;
+      height: 55px;
+    }
+    
+  }
+  
+/* imagem zoomm ---------------------------------------- */
+#zoom{
+    max-width: 100%;
+    -moz-transition: all 0.3s;
+    -weblit-transition: all 0.3s;
+    transition: all 0.3s;
+    border-radius: 5px;
+  
+
+
+  }
+#zoom:hover{
+    -moz-transform:  scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    border-radius: 15px;
+  
+    /* alterar a imagem  */
+}
+.arroz button{
+    font-size: 1000px;
+    color: #000;
+    text-align: center;
+}
+#botao{
+ 
+  text-align: center;
+  margin-top: -25px;
+ 
+  
+  
+
+  
+}
+  
+  

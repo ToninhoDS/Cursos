@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,700;1,700&family=Rubik+Wet+Paint&display=swap');
+
+
+/* separar as colunas */
+.container-grid1 { 
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) ;
+    
+    padding: 0px;
+   
+
+  }
+  .cadastroJ{
+    background: rgba(87, 145, 107, 0.813);
+   
+  }
+
+.cadastroF{
+    background: rgba(87, 96, 145, 0.813);
+  }
+.cadastro-marca {
+    background: rgba(88, 102, 195, 0.813);
+  }
+  
+.cadastroE {
+    background: rgba(133, 195, 88, 0.813);
+  }
+
+.distancia1{
+
+margin:  50px 0 0;
+padding: 1000px;
+
+}
+#btn1{
+  position: absolute;
+  left: 200px;
+  background-color: aqua;
+  
+
+
+}
+
+
+
+
